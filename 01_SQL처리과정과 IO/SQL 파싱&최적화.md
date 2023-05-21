@@ -45,3 +45,16 @@ Plan hash value: 252984561
 ```
 - Cost : 쿼리 수행동안 발생할 것으로 예상되는 I/O 횟수 or 예상 소요시간을 표현한 값.
 
+
+** 옵티마이저 힌트
+- 주석기호에 '+'를 붙여서 사용.
+```SQL
+
+-- 권장 방법.
+EXPLAIN PLAN FOR
+SELECT /*+ INDEX(A_고객_PK) */ OUTER_DATA_VRFC_SEQ
+  FROM CD_OUTER_DATA_VRFC_RESLT_M
+ WHERE OUTER_DATA_VRFC_SEQ = 297
+;
+```
+
