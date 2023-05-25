@@ -58,3 +58,22 @@ SELECT /*+ INDEX(A_고객_PK) */ OUTER_DATA_VRFC_SEQ
 ;
 ```
 
+- 힌트 안에 인자 나열 시, 콤마(,) 사용이 가능하지만 힌트와 힌트 사이에는 사용 불가.
+```SQL
+/*+ INDEX(A A_X01) INDEX(B, B_X03) */   --> 모두 유효
+/*+ INDEX(C), FULL(D) */                --> 첫 번째 힌트만 유효
+```
+
+- 테이블 지정 시, 스키마명까지 같이 명시 X
+```SQL
+SELECT /*+ FULL(SCOTT.EMP) */           --> 무효
+  FROM EMP
+```
+
+- FROM 절 테이블명 옆에 ALIAS 지정 시, 힌트에도 반드시 ALIAS 사용해야 한다.
+```SQL
+SELECT /*+ FULL(EMP) */                 --> 무효
+  FROM EMP E
+```
+
+-- 
